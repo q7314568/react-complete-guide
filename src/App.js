@@ -31,17 +31,15 @@ class App extends Component {
   };
 
   togglePersonsHandler = () => {
-    this.setState({showPersons:this.state.showPersons ? false:true });
+    this.setState({ showPersons: this.state.showPersons ? false : true });
   };
 
   render() {
-    return (
-      <div className="App">
-        <h1>Hi,I'am a React app</h1>
-        <button onClick={this.togglePersonsHandler}>Toggle person</button>
-        {
-          this.state.showPersons ?
-          <div>
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
           <Person
             click={this.switchPersons.bind(this, "Tyler!!")}
             changed={this.nameChangeHandler}
@@ -54,7 +52,15 @@ class App extends Component {
             name={this.state.persons[1].name}
             age={this.state.persons[1].age}
           />
-        </div> : null}
+        </div>
+      );
+    }
+
+    return (
+      <div className="App">
+        <h1>Hi,I'am a React app</h1>
+        <button onClick={this.togglePersonsHandler}>Toggle person</button>
+        {persons}
       </div>
     );
     // return React.createElement(
