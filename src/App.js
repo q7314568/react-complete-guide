@@ -7,6 +7,7 @@ class App extends Component {
     persons: [
       { name: "Peter", age: 35 },
       { name: "Bob", age: 23 },
+      { name: "Watt", age: 40 },
     ],
     showPersons: false,
   };
@@ -40,18 +41,12 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person
-            click={this.switchPersons.bind(this, "Tyler!!")}
-            changed={this.nameChangeHandler}
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-          >
-            My hobbies is VideoGame
-          </Person>
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
+          {this.state.persons.map(person=>{
+            return <Person
+            name={person.name}
+            age={person.age}
           />
+          })}
         </div>
       );
     }
