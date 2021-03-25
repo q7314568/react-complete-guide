@@ -12,15 +12,14 @@ class App extends Component {
     showPersons: false,
   };
 
-  switchPersons = (newName) => {
-    // this.setState({ persons: this.state.persons.reverse() });
-    this.setState({
-      persons: [
-        { name: "Peter", age: 35 },
-        { name: newName, age: 23 },
-      ],
-    });
-  };
+  deletePersonHandler=(personIndex)=>{
+    // const persons=this.state.persons.slice();
+    const persons=[...this.state.persons];//ES6 Spread array
+    this.state.persons.splice(personIndex,1);
+    this.setState({persons:persons});
+
+  }
+
 
   nameChangeHandler = (event) => {
     this.setState({
@@ -41,8 +40,9 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person=>{
+          {this.state.persons.map((person,index)=>{
             return <Person
+            click={()=>this.deletePersonHandler(index)}
             name={person.name}
             age={person.age}
           />
