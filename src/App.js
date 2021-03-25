@@ -5,9 +5,9 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { name: "Peter", age: 35 },
-      { name: "Bob", age: 23 },
-      { name: "Watt", age: 40 },
+      {id:"1", name: "Peter", age: 35 },
+      {id:"2", name: "Bob", age: 23 },
+      {id:"3", name: "Watt", age: 40 },
     ],
     showPersons: false,
   };
@@ -15,7 +15,7 @@ class App extends Component {
   deletePersonHandler=(personIndex)=>{
     // const persons=this.state.persons.slice();
     const persons=[...this.state.persons];//ES6 Spread array
-    this.state.persons.splice(personIndex,1);
+    persons.splice(personIndex,1);
     this.setState({persons:persons});
 
   }
@@ -45,6 +45,7 @@ class App extends Component {
             click={()=>this.deletePersonHandler(index)}
             name={person.name}
             age={person.age}
+            key={person.id}
           />
           })}
         </div>
@@ -58,11 +59,6 @@ class App extends Component {
         {persons}
       </div>
     );
-    // return React.createElement(
-    //   "div",
-    //   { className: "app" },
-    //   React.createElement("h1", null, "Hi,I'am a React app")
-    // );
   }
 }
 
