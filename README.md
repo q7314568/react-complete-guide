@@ -10,3 +10,4 @@ Package:
 
 npm install --save radium
 yarn add styled-components
+yarn add babel-loader@7
