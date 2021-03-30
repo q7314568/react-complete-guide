@@ -1,34 +1,31 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import Radium from "radium";
-
+import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   state = {
     persons: [
-      {id:"1", name: "Peter", age: 35 },
-      {id:"2", name: "Bob", age: 23 },
-      {id:"3", name: "Watt", age: 40 },
+      { id: "1", name: "Peter", age: 35 },
+      { id: "2", name: "Bob", age: 23 },
+      { id: "3", name: "Watt", age: 40 },
     ],
     showPersons: false,
   };
 
-  deletePersonHandler=(personIndex)=>{
+  deletePersonHandler = (personIndex) => {
     // const persons=this.state.persons.slice();
-    const persons=[...this.state.persons];//ES6 Spread array
-    persons.splice(personIndex,1);
-    this.setState({persons:persons});
+    const persons = [...this.state.persons]; //ES6 Spread array
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  };
 
-  }
-
-
-  nameChangeHandler = (event,index) => {
-    const persons=[...this.state.persons];
+  nameChangeHandler = (event, index) => {
+    const persons = [...this.state.persons];
     // persons.find(person=>person.id===index).name=event.target.value;
 
-    const personIndex=this.state.persons.findIndex(p=>p.id===index);
-    persons[personIndex].name=event.target.value;
+    const personIndex = this.state.persons.findIndex((p) => p.id === index);
+    persons[personIndex].name = event.target.value;
 
     // const person={...this.state.person[personIndex]};
 
@@ -37,7 +34,7 @@ class App extends Component {
     // persons[personIndex]=person;
 
     this.setState({
-      persons:persons,
+      persons: persons,
     });
   };
 
@@ -46,60 +43,64 @@ class App extends Component {
   };
 
   render() {
-    const style={
-      backgroundColor:"green",
-      color:"white",
-      font:"inherit",
-      border:"1px solid blue",
-      padding:"8px",
-      cursor:"pointer",
-      ":hover":{
-        backgroundColor:"lightgreen",
-        color:"black"
-      }
-    }
+    const style = {
+      backgroundColor: "green",
+      color: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black",
+      },
+    };
 
     let persons = null;
 
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person,index)=>{
-            return <Person
-            click={()=>this.deletePersonHandler(index)}
-            name={person.name}
-            age={person.age}
-            key={person.id}
-            changed={(event=>this.nameChangeHandler(event,person.id))}
-          />
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                changed={(event) => this.nameChangeHandler(event, person.id)}
+              />
+            );
           })}
         </div>
       );
-      style.backgroundColor="red";
-      style[":hover"]={
-        backgroundColor:"salmon",
-        color:"black"
-      }
+      style.backgroundColor = "red";
+      style[":hover"] = {
+        backgroundColor: "salmon",
+        color: "black",
+      };
     }
 
-    const classes=[];
+    const classes = [];
 
-    if(this.state.persons.length <=2){
+    if (this.state.persons.length <= 2) {
       classes.push("red");
     }
-    if (this.state.persons.length <=1) {
+    if (this.state.persons.length <= 1) {
       classes.push("bold");
     }
 
     return (
-      <div className="App">
-        <h1>Hi,I'am a React app</h1>
-        <p className={classes.join(" ")}>test</p>
-        <button 
-        style={style}
-        onClick={this.togglePersonsHandler}>Toggle person</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi,I'am a React app</h1>
+          <p className={classes.join(" ")}>test</p>
+          <button style={style} onClick={this.togglePersonsHandler}>
+            Toggle person
+          </button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
