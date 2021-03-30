@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
 // import Radium, { StyleRoot } from "radium";
-import Styled from "styled-components";
+// import Styled from "styled-components";
 
-const StyledButton=Styled.button`
-  background-Color: ${props=>props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-Color: ${props=>props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
+// const StyledButton=Styled.button`
+//   background-Color: ${props=>props.alt ? 'red' : 'green'};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid blue;
+//   padding: 8px;
+//   cursor: pointer;
+//   &:hover {
+//     background-Color: ${props=>props.alt ? 'salmon' : 'lightgreen'};
+//     color: black;
+//   }
+// `;
 
 
 
@@ -110,9 +110,9 @@ class App extends Component {
         <div className="App">
           <h1>Hi,I'am a React app</h1>
           <p className={classes.join(" ")}>test</p>
-          <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>
+          <button className="button" onClick={this.togglePersonsHandler}>
             Toggle person
-          </StyledButton>
+          </button>
           {persons}
         </div>
     );
