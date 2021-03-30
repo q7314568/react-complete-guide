@@ -6,6 +6,7 @@ https://www.udemy.com/course/react-the-complete-guide-incl-redux/
 
 
 
-NPM Package:
+Package:
 
 npm install --save radium
+yarn add styled-components
